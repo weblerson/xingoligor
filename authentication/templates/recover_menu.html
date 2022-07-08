@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Recuperar Senha{% endblock 'title' %}
+
+{% block 'body' %}
+    <br>
+    <main>
+        <section class="container">
+            <h3>Preencha o campo de e-mail para solicitar a recuperação de senha:</h3>
+
+            <form action="{% url 'recover_menu' %}" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">E-mail:</label>
+                    <input type="email" class="form-control" id="emailInput" name="email" placeholder="Ex.: sussu@gmail..com">
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <button class="btn btn-outline-primary" type="submit">Solicitar</button>
+            </form><br>
+        </section>
+    </main><br>
+{% endblock 'body' %}

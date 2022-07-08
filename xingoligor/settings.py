@@ -158,3 +158,4 @@ EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
 EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com', cast=str)
 
 ACTIVATION_TEMPLATE = os.path.join(BASE_DIR, 'authentication/templates/emails/activate.html')
+RECOVER_TEMPLATE = os.path.join(BASE_DIR, 'authentication/templates/emails/recover.html')

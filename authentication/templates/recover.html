@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Recuperar Senha{% endblock 'title' %}
+
+{% block 'body' %}
+    <br>
+    <main>
+        <section class="container">
+            <h3>Preencha os campos para alterar a senha:</h3>
+
+            <form action="/auth/recover/{{token}}" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Digite sua senha...">
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirm-passwordInput" class="form-label">Confirmar senha:</label>
+                    <input type="password" class="form-control" id="confirm-passwordInput" name="confirm-password" placeholder="Confirmar sua senha...">
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <button class="btn btn-outline-primary" type="submit">Alterar</button>
+            </form><br>
+        </section>
+    </main><br>
+{% endblock 'body' %}

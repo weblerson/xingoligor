@@ -4,7 +4,7 @@
 {% block 'title' %}Entre{% endblock %}
 
 {% block 'body' %}
-<br>
+    <br>
     <main>
         <section class="container">
             <h3>Preencha os campos para entrar:</h3>
@@ -19,6 +19,7 @@
                     <label for="passwordInput" class="form-label">Senha:</label>
                     <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Sua senha...">
                 </div>
+                <p><a href="{% url 'recover_menu' %}">Esqueceu sua senha?</a></p>
 
                 {% if messages %}
                     {% for message in messages %}

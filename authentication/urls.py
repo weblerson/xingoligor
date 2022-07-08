@@ -9,6 +9,11 @@ urlpatterns = [
     # Login url
     path('login/', views.login, name='login'),
 
+    # Recover urls
+    path('recover/', views.recover_menu, name='recover_menu'),
+    path('recover/<str:token>', views.recover_password, name='recover'),
+    path('norecover/<str:token>', views.no_recover, name='norecover'),
+
     # Logout url
     path('logout/', views.logout, name='logout')
 ]
