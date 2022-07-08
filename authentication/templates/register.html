@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Cadastre-se{% endblock %}
+
+{% block 'body' %}
+    <br>
+    <main>
+        <section class="container">
+            <h3>Preencha os campos para se cadastrar no Xingoligor:</h3>
+            <span>Todos os seus dados estão protegidos</span><br><br>
+
+            <form action="{% url 'register' %}" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                    <label for="usernameInput" class="form-label">Nome de Usuário:</label>
+                    <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Nome de usuário...">
+                </div>
+
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">Endereço de E-mail:</label>
+                    <input type="email" class="form-control" id="emailInput" name="email" placeholder="Ex.: sussu@gmail.com">
+                </div>
+
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Sua senha...">
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirm-passwordInput" class="form-label">Confirme sua Senha:</label>
+                    <input type="password" class="form-control" id="confirm-passwordInput" name="confirm-password" placeholder="Confirmar sua senha...">
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <button class="btn btn-outline-primary" type="submit">Cadastrar</button>
+            </form><br>
+        </section>
+    </main>
+
+    <footer class="container">
+        <span><h3>Já tem uma conta?   </h3></span>
+        <a href="{% url 'login' %}"><button class="btn btn-outline-dark">Entre</button></a>
+    </footer><br>
+{% endblock %}

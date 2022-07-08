@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Entre{% endblock %}
+
+{% block 'body' %}
+<br>
+    <main>
+        <section class="container">
+            <h3>Preencha os campos para entrar:</h3>
+
+            <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                    <label for="usernameInput" class="form-label">Nome de Usuário:</label>
+                    <input type="text" class="form-control" id="usernameInput" name="username" placeholder="Nome de usuário...">
+                </div>
+
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" id="passwordInput" name="password" placeholder="Sua senha...">
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <button class="btn btn-outline-primary" type="submit">Entrar</button>
+            </form><br>
+        </section>
+    </main>
+
+    <footer class="container">
+        <span><h3>Não tem uma conta?</h3></span>
+        <a href="{% url 'register' %}"><button class="btn btn-outline-dark">Cadastre-se</button></a>
+    </footer><br>
+{% endblock %}
